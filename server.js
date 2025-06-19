@@ -3,9 +3,8 @@ const cors = require('cors');
 const { Pool } = require('pg');
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000; // 🔥 INI BAGIAN PENTING
 
-// Logging awal untuk memastikan kode berjalan
 console.log('🚀 Memulai API Persuratan...');
 
 app.use(cors());
@@ -17,7 +16,7 @@ const pool = new Pool({
   ssl: { rejectUnauthorized: false },
 });
 
-// ✅ ROUTE UTAMA (untuk menghindari error di root URL)
+// ✅ ROUTE UTAMA
 app.get('/', (req, res) => {
   res.send('✅ API Persuratan aktif dan siap digunakan!');
 });
